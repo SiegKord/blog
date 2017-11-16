@@ -6,9 +6,9 @@
 	</head>
 	<body>
 	
-		<?php require './includes/body.php'?>
+		<?php echo "<h1 style=\"text-align:center;\">Blog des PD's</h1>"
 
-		
+		?>
 
 		
 		
