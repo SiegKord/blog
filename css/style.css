@@ -1,6 +1,7 @@
 
 	
 h1{
+	
 	text-align: center;
 	background-color: green;
 }
@@ -23,10 +24,23 @@ h1{
 
 }
 
+h2 {
+	
+	font-size:34px;
+	
+}
+
 #article {
 
 
 	text-align: center;
+}
+
+p {
+
+	margin-top:-25px;
+	font-size:24px;
+
 }
 
 #blocdroite {

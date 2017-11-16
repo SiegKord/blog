@@ -33,9 +33,9 @@
 			
 			if($result->num_rows > 0) {	//si il existe au moins une ligne contenant un résultat de requête 
 				while($row = $result->fetch_assoc()) { //tant que la variable row récupère un résultat par la fonction fetch_assoc
-					echo "<div id=article>";
-					echo "<h2>Titre du post</h2><p>". $row["titre"] . "<br>" . "par " . $row["auteur"] . " écris le " . $row["date"] . "<br><br>" . $row["contenu"] . "</p><br><br><br>";
-					echo "<HR></div>";
+					echo "<div id=article>";																																				
+					echo "<h2>Titre du post : ". $row["titre"] . "</h2><p>" . "par " . $row["auteur"] . " écrit le " . $row["date"] . "<br><br>" . $row["contenu"] . "</p><br><br><br>";	   
+					echo "<HR></div>"; 																																						   
 				}
 			} 
 			else {
