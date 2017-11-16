@@ -1,0 +1,40 @@
+
+	
+h1{
+	text-align: center;
+	background-color: green;
+}
+
+#blocgauche {
+
+	float:left;
+	width:200px;
+	height:750px;
+	background-color: orange;
+
+}
+
+#center {
+
+	background-color: #58B6D9;
+	margin: 0 auto;
+	width:1450px;
+	
+
+}
+
+#article {
+
+
+	text-align: center;
+}
+
+#blocdroite {
+	
+	
+	float:right;
+	background-color:grey;
+	width:200px;
+	height:750px;
+	
+}

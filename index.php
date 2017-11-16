@@ -2,42 +2,51 @@
 <html>
 	<head>
 		<meta charset="utf-8"/>
+		<link rel="stylesheet" href="css/style.css"/>
 		<title>Bienvenue sur mon Blog.</title>
 	</head>
+	
 	<body>
 	
-		<h1 style="text-align:center;">Blog des PD's</h1>
+		<h1>Blog des PD's</h1>
+		<div id="blocgauche"></div>
+		<div id="blocdroite"></div>
+		<div id="center">
+		
 	
 		<?php
 		
-			$servername = "localhost";
+			$servername = "localhost"; //inialisation des variables utiles pour la connexion au serveur MySQL
 			$username = "root";
 			$password = "";
 			$dbname = "blog";
 			
-			$connect = new mysqli($servername, $username, $password, $dbname);
+			$connect = new mysqli($servername, $username, $password, $dbname); //ouvre la connexion au serveur MySQL
 			
 			if($connect->connect_error) {
 					die("connection failed: " . $conn->connect_error); //envoie un message d'erreur si la connexion échoue
 			}
 			
 			$connect->query("SET NAMES UTF8"); //permet l'encodage en UTF-8
-			$sql = "SELECT titre, auteur, date, contenu FROM article";
-			$result = $connect->query($sql);
+			$sql = "SELECT titre, auteur, date, contenu FROM article ORDER BY date DESC"; //creation d'une variable contenant la requête MySQL
+			$result = $connect->query($sql); //execution de la requête SELECT et resultat envoyé dans la variable result
 			
-			if($result->num_rows > 0) {
-				while($row = $result->fetch_assoc()) {
-					echo "Titre du post :" . $row["titre"] . "<br>" . "par " . $row["auteur"] . " écris le " . $row["date"] . "<br><br>" . $row["contenu"] . "<br><br><br>";
+			if($result->num_rows > 0) {	//si il existe au moins une ligne contenant un résultat de requête 
+				while($row = $result->fetch_assoc()) { //tant que la variable row récupère un résultat par la fonction fetch_assoc
+					echo "<div id=article>";
+					echo "<h2>Titre du post</h2><p>". $row["titre"] . "<br>" . "par " . $row["auteur"] . " écris le " . $row["date"] . "<br><br>" . $row["contenu"] . "</p><br><br><br>";
+					echo "<HR></div>";
 				}
 			} 
 			else {
 				echo "Aucun article n'a été écris !";
 			}
 			
-			$connect->close();
+			$connect->close(); //fermeture de la connexion
 		
 		?>
-
+		
+		</div>
 		
 		
 	</body>
