@@ -18,17 +18,17 @@
 		
 			class Article {
 				
-			//	public $title = "Mes vacances à Disney";
+				private $title = "Mes vacances à Disney";
 				
-				public function getTitle($title) {
-					
-					echo "Le titre est ";
-					echo $title;
+				public function getTitle() {	
+				
+					// echo "Le titre est " . $this->title;	//this permet de récupérer la valeur de title dans la classe dans laquelle je me trouve
+					return $this->title;
 				}
 			}		
 			
 			$monArticle = new Article;
-			$monArticle->getTitle("Mes vacances à Disney");
+			echo "Le titre est " . $monArticle->getTitle() . " dans mon article";
 			
 			
 			
