@@ -16,10 +16,24 @@
 	
 		<?php
 		
-			$servername = "localhost"; //inialisation des variables utiles pour la connexion au serveur MySQL
-			$username = "root";
-			$password = "";
-			$dbname = "blog";
+			class Article {
+				
+			//	public $title = "Mes vacances à Disney";
+				
+				public function getTitle($title) {
+					
+					echo "Le titre est ";
+					echo $title;
+				}
+			}		
+			
+			$monArticle = new Article;
+			$monArticle->getTitle("Mes vacances à Disney");
+			
+			
+			
+			
+			require "/includes/conf.php";
 			
 			$connect = new mysqli($servername, $username, $password, $dbname); //ouvre la connexion au serveur MySQL
 			
