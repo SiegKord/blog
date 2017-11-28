@@ -16,6 +16,12 @@
 	
 		<?php
 		
+		require "/includes/conf.php";
+		require "/models/dao/ArticleDAO.php";
+		require "/models/entities/article.php";
+		
+		/*
+		
 			class Article {
 				
 				private $title = "Mes vacances à Disney";
@@ -57,6 +63,17 @@
 			}
 			
 			$connect->close(); //fermeture de la connexion
+		
+		*/
+		
+		$myDao = new ArticleDAO;
+		
+			
+		$listePost = array();
+		$listePosts[] = $myDao->getPosts();
+		
+		print_r($listePosts);
+			
 		
 		?>
 		
