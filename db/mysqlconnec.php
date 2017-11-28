@@ -1,5 +1,7 @@
 <?php
  
+
+
 class SPDO
 {
   /**
@@ -84,7 +86,7 @@ class SPDO
    * @return PDOStatement Retourne l'objet PDOStatement
    */
   public function query($query)
-  {
+  {  
     return $this->PDOInstance->query($query);
   }
 }

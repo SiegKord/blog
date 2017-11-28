@@ -1,13 +1,15 @@
 <?php
 
-require "/db/mysqlconnec.php";
+require "/../../db/mysqlconnec.php";
 
 class ArticleDAO {
 	
 	public function getPosts() {
 		
+		SPDO::getInstance();
 		$listeIDs = array();
-		$req = query("SELECT id FROM article ORDER BY date DESC");
+		
+		$req = SPDO::query("SELECT id FROM article ORDER BY date DESC");
 		
 		while($dat = mysql_fetch_assoc($req)){
 			$listeIDs[] = $dat['id'];
