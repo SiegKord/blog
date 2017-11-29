@@ -6,36 +6,37 @@ class ArticleDAO {
 	
 	public function getPosts() {
 		
-		SPDO::getInstance();
+		
 		$listeIDs = array();
+		$listePosts = array();
+		$db = SPDO::getInstance();
 		
-		$req = SPDO::query("SELECT id FROM article ORDER BY date DESC");
+		$req = $db->query("SET NAMES UTF8");
+		$req = $db->query("SELECT * FROM article ORDER BY date DESC");
+		$req->execute();
+		print("Fetch all of the remaining row in the result set:\n");
+		$result = $req->fetchAll(\PDO::FETCH_ASSOC);
 		
-		while($dat = mysql_fetch_assoc($req)){
-			$listeIDs[] = $dat['id'];
-		}
-		
-		
-		$mesPosts = new Article;
-		$mesPosts = array();
-		
-		foreach($idArticle as $listeIDs){
-			while($data = mysql_fetch_assoc($monArticle)){
-			$mesPosts[] = $data['id']['titre']['auteur']['date']['contenu'];
-			}
+		foreach($result as $data){
+			$listeIDs[] = $data['id'] . $data['titre'] . $data['auteur'] . $data['date'] . $data['contenu'];
 			
-			return $mesPosts;
+			$monArticle = new Article;
+			$monArticle->setTitle($data['titre']);
+			$monArticle->setDatepost($data['date']);
+			$monArticle->setAuthor($data['auteur']);
+			$monArticle->setContent($data['contenu']);
 			
+			echo "L'article " . $monArticle->getTitle() . " date du " . $monArticle->getDatepost() . " de l'auteur " . $monArticle->getAuthor() . " contenant : " . $monArticle->getContent() . "<br>";
 		}
+		var_dump($listeIDs);
+		
+		
+		
+		
+		
+
+			
 	}	
 		
-	public function getArticleByID($idArticle) {
-		
-		$monArticle = new Article;
-		;
-		$monArticle = query("SELECT * FROM article WHERE id = idArticle");
-		
-		return monArticle;
-	}
 	
 }

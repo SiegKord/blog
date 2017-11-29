@@ -69,10 +69,8 @@
 		$myDao = new ArticleDAO;
 		
 			
-		$listePost = array();
 		$listePosts[] = $myDao->getPosts();
 		
-		print_r($listePosts);
 			
 		
 		?>
