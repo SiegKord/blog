@@ -1,49 +1,27 @@
 <?php
 
 require "/../../db/mysqlconnec.php";
+require "/../entities/article.php";
 
 class ArticleDAO {
-	
-	// public function getPosts() {
-		
-		
-		// $listeIDs = array();
-		// $db = SPDO::getInstance();
-		
-		// $req = $db->query("SET NAMES UTF8");
-		// $req = $db->query("SELECT * FROM article ORDER BY date DESC");
-		// print("Fetch all of the remaining row in the result set:\n");
-		// $result = $req->fetchAll(\PDO::FETCH_ASSOC);
-		
-		// foreach($result as $data){
-			// $listeIDs[] = $data['id'] . $data['titre'] . $data['auteur'] . $data['date'] . $data['contenu'];
-			
-			// $monArticle = new Article;
-			// $monArticle->setTitle($data['titre']);
-			// $monArticle->setDatepost($data['date']);
-			// $monArticle->setAuthor($data['auteur']);
-			// $monArticle->setContent($data['contenu']);
-			
-			// echo "L'article " . $monArticle->getTitle() . " date du " . $monArticle->getDatepost() . " de l'auteur " . $monArticle->getAuthor() . " contenant : " . $monArticle->getContent() . "<br>";
-		// }
-		// var_dump($listeIDs);
-		
-	// }
-		
-		
-		
-
 			
 		
 		public function getArticle($idArticle) {
 	
 		
+			$myArticle = new Article;
 			$db = SPDO::getInstance();
 			
 			$req = $db->query("SET NAMES UTF8");
 			$req = $db->query("SELECT * FROM article WHERE id = $idArticle ORDER BY date DESC");
-			$result = $req->fetchAll(\PDO::FETCH_ASSOC);
-			var_dump($result);
+			$resultArt = $req->fetchAll(\PDO::FETCH_ASSOC);
+			var_dump($resultArt);
+			$myArticle.setTitle($resultArt['titre']);
+			$myArticle.setAuthor($resultArt['auteur']);
+			$myArticle.setDatepost($resultArt['date']);
+			$myArticle.setContent($resultArt['contenu']);
+			
+			return $myArticle;
 			
 		}
 	
@@ -53,8 +31,9 @@ class ArticleDAO {
 			
 			$req = $db->query("SET NAMES UTF8");
 			$req = $db->query("SELECT id FROM article WHERE titre = \"$title\" AND auteur = \"$author\" AND date = \"$date\" AND contenu = \"$content\"");
-			$result = $req->fetchAll(\PDO::FETCH_ASSOC);
-			var_dump($result);
+			$resultID = $req->fetchAll(\PDO::FETCH_ASSOC);
+			var_dump($resultID);
+			return $resultID;
 		}
 		
 		public function get5Articles() {
@@ -72,8 +51,9 @@ class ArticleDAO {
 			}
 			
 			foreach($listeIDs as $idArticle){
-				$art = $artcl->getArticle($idArticle);
+				$artcl->getArticle($idArticle);
 			}
+			return $artcl;
 				
 		}
 		

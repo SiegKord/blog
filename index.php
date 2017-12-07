@@ -27,6 +27,7 @@
 			
 		$article = $myDao->getArticle(5);
 		
+		
 		echo '<br><br><br>';
 		
 		$idSearch = $myDao->setArticle("Coming-out", "Nann", "2017-11-16 13:25:34", "Je suis gay.");
