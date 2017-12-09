@@ -1,7 +1,7 @@
 <?php
 
 require "/../../db/mysqlconnec.php";
-require "/../entities/article.php";
+require_once "/../entities/article.php";
 
 class ArticleDAO {
 			
@@ -14,12 +14,12 @@ class ArticleDAO {
 			
 			$req = $db->query("SET NAMES UTF8");
 			$req = $db->query("SELECT * FROM article WHERE id = $idArticle ORDER BY date DESC");
-			$resultArt = $req->fetchAll(\PDO::FETCH_ASSOC);
+			$resultArt = $req->fetch(\PDO::FETCH_ASSOC);
 			var_dump($resultArt);
-			$myArticle.setTitle($resultArt['titre']);
-			$myArticle.setAuthor($resultArt['auteur']);
-			$myArticle.setDatepost($resultArt['date']);
-			$myArticle.setContent($resultArt['contenu']);
+			$myArticle->setTitle($resultArt['titre']);
+			$myArticle->setAuthor($resultArt['auteur']);
+			$myArticle->setDatepost($resultArt['date']);
+			$myArticle->setContent($resultArt['contenu']);
 			
 			return $myArticle;
 			
@@ -27,13 +27,16 @@ class ArticleDAO {
 	
 		public function setArticle($title, $author, $date, $content) {
 			
+			$myID = new Article;
 			$db = SPDO::getInstance();
 			
 			$req = $db->query("SET NAMES UTF8");
 			$req = $db->query("SELECT id FROM article WHERE titre = \"$title\" AND auteur = \"$author\" AND date = \"$date\" AND contenu = \"$content\"");
-			$resultID = $req->fetchAll(\PDO::FETCH_ASSOC);
+			$resultID = $req->fetch(\PDO::FETCH_ASSOC);
 			var_dump($resultID);
-			return $resultID;
+			$myID->setId($resultID['id']);
+			
+			return $myID;
 		}
 		
 		public function get5Articles() {

@@ -3,10 +3,24 @@
 
 	class Article {
 		
+		private $id;
 		private $title = ""; 
 		private $datepost;
 		private $author = "";
 		private $content = "";
+		
+		
+		public function getId() {
+			
+			return $this->id;
+			
+		}
+		
+		public function setId($value) {
+			
+			$this->id = $value;
+			
+		}
 		
 		public function getTitle() {
 			

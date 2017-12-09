@@ -3,10 +3,23 @@
 
 	class Article {
 		
+		private $idpost;
 		private $title = ""; 
 		private $datepost;
 		private $author = "";
 		private $content = "";
+		
+		public function getIdpost() {
+			
+			return $this->idpost;
+			
+		}
+		
+		public function setIdpost($value) {
+			
+			$this->idpost = $value;
+			
+		}
 		
 		public function getTitle() {
 			
