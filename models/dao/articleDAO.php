@@ -13,9 +13,8 @@ class ArticleDAO {
 			$db = SPDO::getInstance();
 			
 			$req = $db->query("SET NAMES UTF8");
-			$req = $db->query("SELECT * FROM article WHERE id = $idArticle ORDER BY date DESC");
+			$req = $db->query("SELECT * FROM article WHERE id = $idArticle");
 			$resultArt = $req->fetch(\PDO::FETCH_ASSOC);
-			var_dump($resultArt);
 			$myArticle->setTitle($resultArt['titre']);
 			$myArticle->setAuthor($resultArt['auteur']);
 			$myArticle->setDatepost($resultArt['date']);
@@ -33,7 +32,6 @@ class ArticleDAO {
 			$req = $db->query("SET NAMES UTF8");
 			$req = $db->query("SELECT id FROM article WHERE titre = \"$title\" AND auteur = \"$author\" AND date = \"$date\" AND contenu = \"$content\"");
 			$resultID = $req->fetch(\PDO::FETCH_ASSOC);
-			var_dump($resultID);
 			$myID->setId($resultID['id']);
 			
 			return $myID;
@@ -42,21 +40,24 @@ class ArticleDAO {
 		public function get5Articles() {
 		
 			$artcl = new ArticleDAO;
-			$listeIDs = array();
+			$listeIDs = [];
+			$article = [];
 			
 			$db = SPDO::getInstance();
 			$req = $db->query("SET NAMES UTF8");
-			$req = $db->query("SELECT id FROM article LIMIT 0,5");
+			$req = $db->query("SELECT id FROM article ORDER BY date DESC LIMIT 0,5");
 			$result = $req->fetchAll(\PDO::FETCH_ASSOC);
-			
 			foreach($result as $data) {
 				$listeIDs[] = $data['id'];
 			}
-			
 			foreach($listeIDs as $idArticle){
-				$artcl->getArticle($idArticle);
+				$article[] = $artcl->getArticle($idArticle);
+				
+				
 			}
-			return $artcl;
+			return $article; //retourne un tableau contenant chaque article
+			
+						
 				
 		}
 		
