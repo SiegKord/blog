@@ -28,6 +28,9 @@
 				$created->setContent($_POST['contenu']);
 				
 				$myDAO->setArticle($created);
+				
+				
+				
 
 			?>
 		

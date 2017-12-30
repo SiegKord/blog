@@ -31,5 +31,23 @@
 			}
 		</script>	
 		
+		
+		<?php
+		
+		require "/models/dao/ArticleDAO.php";
+		
+		$myDAO = new ArticleDAO;
+		$titleDate = new Article;
+		$titleDate = $myDAO->getTitleDate(5);
+		
+		$date = $titleDate->getDatepost();
+		// essayer de faire quelque chose avec preg_split()
+		
+		echo "La date de l'article '" . $titleDate->getTitle() . "' est " . $date . ".";
+		
+		
+		
+		?>
+		
 	</body>
 </html>

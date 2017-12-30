@@ -40,7 +40,6 @@ class ArticleDAO {
 			$db = SPDO::getInstance();
 			
 			$req = $db->query("SET NAMES UTF8");
-			
 			$req = $db->exec("INSERT INTO article(`titre`, `auteur`, `date`, `contenu`) VALUES ('" . $article->getTitle() . "', '" . $article->getAuthor() . "', '" . $article->getDatepost() . "', '" . $article->getContent() . "');");
 			
 		}
@@ -69,6 +68,23 @@ class ArticleDAO {
 				
 		}
 		
+		
+		public function getTitleDate($idPost) {
+			
+			$myTitleDate = new Article;
+			
+			$db = SPDO::getInstance();
+			$req = $db->query("SET NAMES UTF8");
+			$req = $db->query("SELECT titre, date FROM article WHERE id = $idPost");
+			$resultreq = $req->fetch(\PDO::FETCH_ASSOC);
+			
+			$myTitleDate->setTitle($resultreq['titre']);
+			$myTitleDate->setDatepost($resultreq['date']);
+			
+			return $myTitleDate;
+		}
+
+			
 	
 	
 }
