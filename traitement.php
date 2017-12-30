@@ -10,10 +10,25 @@
 		<h1>Article créé</h1>
 	
 			<?php 
-				if(empty($_POST['auteur']))
-					$_POST['auteur'] = "Anonyme";
+				require "/models/dao/ArticleDAO.php";
 				
-				echo "Votre titre d'article est <b>" . $_POST['titre'] . "</b>. L'auteur de l'article est <b>" . $_POST['auteur'] . "</b> et son contenu est : <b>" . $_POST['contenu'] . "</b>";
+				echo "Votre titre d'article est <b>" . $_POST['titre'] . "</b>. L'auteur de l'article est <b>";
+				if(empty($_POST['auteur'])) 
+					echo "Anonyme";
+				else
+					echo $_POST['auteur'];
+				
+				echo "</b> et son contenu est : <b>" . $_POST['contenu'] . "</b>";
+				
+				$myDAO = new ArticleDAO;
+				$created = new Article; 
+				$created->setTitle($_POST['titre']);
+				$created->setAuthor($_POST['auteur']);
+				$created->setDatepost(date("Y-m-d H:i:s"));
+				$created->setContent($_POST['contenu']);
+				
+				$myDAO->setArticle($created);
+
 			?>
 		
 	</body>

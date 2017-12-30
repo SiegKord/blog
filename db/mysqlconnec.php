@@ -10,7 +10,7 @@ class SPDO
    * @var PDO
    * @access private
    */ 
-  private $PDOInstance = null;
+  public $PDOInstance = null;
  
    /**
    * Instance de la classe SPDO
@@ -89,4 +89,9 @@ class SPDO
   {  
     return $this->PDOInstance->query($query);
   }
+  
+  public function exec($exec)
+  {  
+    return $this->PDOInstance->exec($exec);
+  } 
 }

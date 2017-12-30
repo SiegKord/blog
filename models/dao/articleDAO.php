@@ -24,17 +24,25 @@ class ArticleDAO {
 			
 		}
 	
-		public function setArticle($title, $author, $date, $content) {
+		public function setArticle($article) {
 			
-			$myID = new Article;
+			// $myID = new Article;
+			// $db = SPDO::getInstance();
+			
+			// $req = $db->query("SET NAMES UTF8");
+			// $req = $db->query("SELECT id FROM article WHERE titre = \"$title\" AND auteur = \"$author\" AND date = \"$date\" AND contenu = \"$content\"");
+			// $resultID = $req->fetch(\PDO::FETCH_ASSOC);
+			// $myID->setId($resultID['id']);
+			
+			// return $myID;
+			
+			$myID = new  Article;
 			$db = SPDO::getInstance();
 			
 			$req = $db->query("SET NAMES UTF8");
-			$req = $db->query("SELECT id FROM article WHERE titre = \"$title\" AND auteur = \"$author\" AND date = \"$date\" AND contenu = \"$content\"");
-			$resultID = $req->fetch(\PDO::FETCH_ASSOC);
-			$myID->setId($resultID['id']);
 			
-			return $myID;
+			$req = $db->exec("INSERT INTO article(`titre`, `auteur`, `date`, `contenu`) VALUES ('" . $article->getTitle() . "', '" . $article->getAuthor() . "', '" . $article->getDatepost() . "', '" . $article->getContent() . "');");
+			
 		}
 		
 		public function get5Articles() {

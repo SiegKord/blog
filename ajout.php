@@ -17,7 +17,7 @@
 			</br>
 			<p>Tapez votre article : <textarea name="contenu">
 			</textarea></p>
-			<input type="submit" value="Envoyer" onClick="NoAuthor()"/>		
+			<input type="submit" value="Envoyer" onClick="NoAuthor(); return false;"/>		
 			<input type="reset" value="Effacer" />
 		
 		</form>
