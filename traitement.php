@@ -19,6 +19,7 @@
 					echo $_POST['auteur'];
 				
 				echo "</b> et son contenu est : <b>" . $_POST['contenu'] . "</b>";
+				echo "</br></br></br>";
 				
 				$myDAO = new ArticleDAO;
 				$created = new Article; 
@@ -29,7 +30,17 @@
 				
 				$myDAO->setArticle($created);
 				
+				$myID = $myDAO->getIdfromArticle($_POST['titre'], $_POST['auteur'], $_POST['contenu']);
 				
+				$titleDate = $myDAO->getTitleDate($myID);
+				
+				$date = $titleDate->getDatepost();
+				
+				$timestamp = strtotime($date);
+				setlocale(LC_TIME, "fr");
+		
+				echo "La date de l'article '<b>" . $titleDate->getTitle() . "</b>' est le " . strftime("%A %d %B %Y", $timestamp); // affichage de la date
+				echo " à " . strftime("%H", $timestamp) . "h" . strftime("%M", $timestamp); // affichage de l'heure
 				
 
 			?>

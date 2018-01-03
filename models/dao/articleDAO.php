@@ -26,15 +26,6 @@ class ArticleDAO {
 	
 		public function setArticle($article) {
 			
-			// $myID = new Article;
-			// $db = SPDO::getInstance();
-			
-			// $req = $db->query("SET NAMES UTF8");
-			// $req = $db->query("SELECT id FROM article WHERE titre = \"$title\" AND auteur = \"$author\" AND date = \"$date\" AND contenu = \"$content\"");
-			// $resultID = $req->fetch(\PDO::FETCH_ASSOC);
-			// $myID->setId($resultID['id']);
-			
-			// return $myID;
 			
 			$myID = new  Article;
 			$db = SPDO::getInstance();
@@ -75,7 +66,7 @@ class ArticleDAO {
 			
 			$db = SPDO::getInstance();
 			$req = $db->query("SET NAMES UTF8");
-			$req = $db->query("SELECT titre, date FROM article WHERE id = $idPost");
+			$req = $db->query("SELECT titre, date FROM article WHERE id = '$idPost'");
 			$resultreq = $req->fetch(\PDO::FETCH_ASSOC);
 			
 			$myTitleDate->setTitle($resultreq['titre']);
@@ -84,7 +75,21 @@ class ArticleDAO {
 			return $myTitleDate;
 		}
 
+		public function getIdfromArticle($title, $author, $content){
+		
+			$myIDfromArticle = new Article;
+			$db = SPDO::getInstance();
 			
+			$req = $db->query("SET NAMES UTF8");
+			$req = $db->query("SELECT id FROM article WHERE titre = $title AND auteur = $author AND contenu = $content");
+			$resultreq = $req->fetch(\PDO::FETCH_ASSOC);
+			
+			$myIDfromArticle->setId($resultreq['id']);
+			$id = $myIDfromArticle->getId();
+			
+			return $id;
+		
+		}
 	
 	
 }
