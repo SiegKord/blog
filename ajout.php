@@ -19,8 +19,10 @@
 			</textarea></p>
 			<input type="submit" value="Envoyer" onClick="NoAuthor(); return false;"/>		
 			<input type="reset" value="Effacer" />
+			
 		
 		</form>
+		</br>
 		<script type="text/javascript">		
 			function NoAuthor(){
 				if (typeOf($_POST['auteur'])=='undefined' or !$_POST['auteur']) {
@@ -41,12 +43,13 @@
 		$titleDate = $myDAO->getTitleDate(5);
 		
 		$date = $titleDate->getDatepost();
-		// essayer de faire quelque chose avec preg_split()
 		
-		echo "La date de l'article '" . $titleDate->getTitle() . "' est " . $date . ".";
+		$timestamp = strtotime($date);
+		setlocale(LC_TIME, "fr");
 		
-		
-		
+		echo "La date de l'article " . $titleDate->getTitle() . " est le " . strftime("%A %d %B %Y", $timestamp); // Affichage de la date
+		echo " à " . strftime("%H", $timestamp) . "h" . strftime("%M", $timestamp);
+
 		?>
 		
 	</body>
