@@ -28,19 +28,29 @@
 				$created->setDatepost(date("Y-m-d H:i:s"));
 				$created->setContent($_POST['contenu']);
 				
-				$myDAO->setArticle($created);
+				$newArticle = $myDAO->setArticle($created);
+				var_dump($newArticle);
 				
-				$myID = $myDAO->getIdfromArticle($_POST['titre'], $_POST['auteur'], $_POST['contenu']);
+				// $myID = $myDAO->getIdfromArticle($_POST['titre'], $_POST['auteur'], $_POST['contenu']);
 				
-				$titleDate = $myDAO->getTitleDate($myID);
+				// echo "L'ID de cet article est le numéro " . $myID . ".</br></br>";
 				
-				$date = $titleDate->getDatepost();
+				// $titleDate = $myDAO->getTitleDate($myID);
 				
-				$timestamp = strtotime($date);
-				setlocale(LC_TIME, "fr");
+				$date = $newArticle->getDatepost();
+				var_dump($date);
+				$maStringDate = $myDAO->dateToString($date);
+				
+				echo "La date de l'article '<b>" . $newArticle->getTitle() . "</b>' est le " . $maStringDate;
+				
+				
+				// $date = $titleDate->getDatepost();
+				
+				// $timestamp = strtotime($date);
+				// setlocale(LC_TIME, "fr");
 		
-				echo "La date de l'article '<b>" . $titleDate->getTitle() . "</b>' est le " . strftime("%A %d %B %Y", $timestamp); // affichage de la date
-				echo " à " . strftime("%H", $timestamp) . "h" . strftime("%M", $timestamp); // affichage de l'heure
+				// echo "La date de l'article '<b>" . $titleDate->getTitle() . "</b>' est le " . strftime("%A %d %B %Y", $timestamp); // affichage de la date
+				// echo " à " . strftime("%H", $timestamp) . "h" . strftime("%M", $timestamp); // affichage de l'heure
 				
 
 			?>

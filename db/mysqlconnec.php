@@ -94,4 +94,8 @@ class SPDO
   {  
     return $this->PDOInstance->exec($exec);
   } 
+   public function lastInsertId()
+  {  
+    return $this->PDOInstance->lastInsertId();
+  } 
 }

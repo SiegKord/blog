@@ -34,21 +34,7 @@
 		</script>	
 		
 		
-		<?php
-		
-		require "/models/dao/ArticleDAO.php";
-		
-		$myDAO = new ArticleDAO;
-		$titleDate = new Article;
-		$titleDate = $myDAO->getTitleDate(5);
-		
-		$date = $titleDate->getDatepost();
-		
-		$timestamp = strtotime($date);
-		setlocale(LC_TIME, "fr");
-		
-		echo "La date de l'article " . $titleDate->getTitle() . " est le " . strftime("%A %d %B %Y", $timestamp); // affichage de la date
-		echo " à " . strftime("%H", $timestamp) . "h" . strftime("%M", $timestamp); // affichage de l'heure
+		<?php	
 		
 		?>
 		

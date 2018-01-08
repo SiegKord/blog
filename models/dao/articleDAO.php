@@ -19,6 +19,7 @@ class ArticleDAO {
 			$myArticle->setAuthor($resultArt['auteur']);
 			$myArticle->setDatepost($resultArt['date']);
 			$myArticle->setContent($resultArt['contenu']);
+			$myArticle->setId($resultArt['id']);
 			
 			return $myArticle;
 			
@@ -27,12 +28,22 @@ class ArticleDAO {
 		public function setArticle($article) {
 			
 			
-			$myID = new  Article;
+			$myNewArticle = new  Article;
 			$db = SPDO::getInstance();
 			
 			$req = $db->query("SET NAMES UTF8");
 			$req = $db->exec("INSERT INTO article(`titre`, `auteur`, `date`, `contenu`) VALUES ('" . $article->getTitle() . "', '" . $article->getAuthor() . "', '" . $article->getDatepost() . "', '" . $article->getContent() . "');");
+			var_dump($req);
+			$last_ID = $db->lastInsertId();
+			var_dump($last_ID);
+			$myNewArticle->setId($last_ID);
+			$myNewArticle->setTitle($article->getTitle());
+			$myNewArticle->setAuthor($article->getAuthor());
+			$myNewArticle->setDatepost($article->getDatepost());
+			$myNewArticle->setContent($article->getContent());
+			var_dump($myNewArticle);
 			
+			return $myNewArticle;
 		}
 		
 		public function get5Articles() {
@@ -59,8 +70,7 @@ class ArticleDAO {
 				
 		}
 		
-		
-		public function getTitleDate($idPost) {
+		public function getTitleDate($idPost) { // non utilisé
 			
 			$myTitleDate = new Article;
 			
@@ -81,7 +91,7 @@ class ArticleDAO {
 			$db = SPDO::getInstance();
 			
 			$req = $db->query("SET NAMES UTF8");
-			$req = $db->query("SELECT id FROM article WHERE titre = $title AND auteur = $author AND contenu = $content");
+			$req = $db->query("SELECT id FROM article WHERE titre = '$title' AND auteur = '$author' AND contenu = '$content'");
 			$resultreq = $req->fetch(\PDO::FETCH_ASSOC);
 			
 			$myIDfromArticle->setId($resultreq['id']);
@@ -91,5 +101,20 @@ class ArticleDAO {
 		
 		}
 	
-	
+		public function dateToString($date, $lang = "fr") {
+		
+			$timestamp = strtotime($date);
+			setlocale(LC_TIME, $lang);
+			
+			$day = strftime("%A %d %B %Y", $timestamp); // jour, mois et année
+			$hour = strftime("%H", $timestamp); // heure
+			$min = strftime("%M", $timestamp); // minutes
+			
+			$stringDate = $day . " à " . $hour . "h" . $min . ".";
+			
+			return $stringDate;
+
+		
+		}
+		
 }
