@@ -32,16 +32,11 @@ class ArticleDAO {
 			$db = SPDO::getInstance();
 			
 			$req = $db->query("SET NAMES UTF8");
-			var_dump($article);
 			if(null!==$article->getId()) {
 				echo "bonjour";
 				$dateEdit = date("Y-m-d H:i:s");
-				var_dump($dateEdit);
-				var_dump($_POST['titleModified']);
-				var_dump($_POST['contentModified']);
-				var_dump($article->getId());
 				$req = $db->exec("UPDATE article SET titre ='" . $_POST['titleModified'] . "', dateEdit = '$dateEdit', contenu ='" . $_POST['contentModified'] . "' WHERE id = '" . $article->getId() . "'");
-				var_dump($req);
+			
 				$myNewArticle->setId($article->getId());
 				$myNewArticle->setTitle($_POST['titleModified']);
 				$myNewArticle->setDateEdit($dateEdit);

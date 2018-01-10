@@ -26,6 +26,8 @@
 		echo "------------";
 		echo '<br><br><br>';
 		
+		echo "<a href= 'ajout.php'>Créer un article</a></br></br>";
+		
 		
 		$articles = $myDao->get5Articles();
 		$i = 1;
@@ -37,27 +39,18 @@
 			echo "<form method=\"post\" name=\"edit\" action=\"edit.php?id=" . $eachArt->getId() . "\">";
 			echo "<input type=\"submit\" value=\"Modifier\"/>";	
 			echo "</form>";
-			echo "<form method=\"post\" name=\"edit\">";
-			echo "<input type=\"submit\" name=\"delete\" value=\"Supprimer\" onClick=\"return deleteArticle()\"/>";
-			echo "</form></br></br>";
-			}
-			
-			
-			
-			
-				
-				
-				
+			echo "<a href = 'delete.php?id=" . $eachArt->getId() . "'>Supprimer l'article</a></br></br>";
 			$i++;
 			
 		}
 
 		?>
+		
 		<script type="text/javascript">		
-			function deleteArticle(){
-					if(confirm("Voulez-vous vraiment supprimer cet article?")){
-					}
-			}
+			// function deleteArticle(){
+					// if(confirm("Voulez-vous vraiment supprimer cet article?")){
+					// }
+			// }
 		</script>	
 		
 		

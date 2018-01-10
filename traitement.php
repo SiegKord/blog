@@ -39,8 +39,9 @@
 				$date = $newArticle->getDatepost();
 				$maStringDate = $myDAO->dateToString($date);
 				
-				echo "La date de l'article '<b>" . $newArticle->getTitle() . "</b>' est le " . $maStringDate;
+				echo "La date de l'article '<b>" . $newArticle->getTitle() . "</b>' est le " . $maStringDate . "</br></br></br>";
 				
+				echo "<a href = 'accueil.php'>Retour à l'accueil</a>";
 				
 				// $date = $titleDate->getDatepost();
 				
