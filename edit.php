@@ -10,8 +10,32 @@
 		<h1>Modification</h1>
 		
 		
-		
 		<?php	
+		
+			require "/models/dao/ArticleDAO.php";
+		
+			$myDAO = new ArticleDAO;
+			
+			$article = $myDAO->getArticle($_GET['id']);
+
+				
+			echo "<h2>Veuillez modifier les informations :</h2></br></br>";
+			
+			echo "<form method=\"post\" name=\"modify\" action=\"\"";
+			echo "<p>Nom de l'article : <input type=\"text\" name=\"titleModified\" value=\"" . $article->getTitle() . "\"/></p></br>";
+			echo "<p>Contenu de l'article : <textarea name=\"contentModified\">" . $article->getContent() . "</textarea></p></br>";
+			echo "<input type=\"submit\" name = \"submit\" value=\"Valider\"/>";
+			echo "</form></br></br>";
+			if(isset($_POST['submit'])) {
+				if(empty($_POST['titleModified']) || empty($_POST['contentModified'])) {
+					echo "Un ou plusieurs champs sont manquants, veuillez resaisir les informations.";
+				}
+				else {
+				$updatedArticle = $myDAO->setArticle($article);
+				var_dump($updatedArticle);
+				}
+			}
+			
 		
 		?>
 		

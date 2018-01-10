@@ -6,6 +6,7 @@
 		private $id;
 		private $title = ""; 
 		private $datepost;
+		private $dateEdit;
 		private $author = "";
 		private $content = "";
 		
@@ -42,6 +43,16 @@
 			
 			$this->datepost = $value;
 			
+		}
+		
+		public function getDateEdit() {
+			
+			return $this->dateEdit;
+		}
+		
+		public function setDateEdit($value) {
+		
+			$this->dateEdit = $value;
 		}
 		
 		public function getAuthor() {

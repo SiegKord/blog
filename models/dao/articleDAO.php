@@ -25,23 +25,42 @@ class ArticleDAO {
 			
 		}
 	
-		public function setArticle($article) {
+		public function setArticle($article) { //contient la fonction pour créer un nouvel article et pour modifier un article
 			
 			
 			$myNewArticle = new  Article;
 			$db = SPDO::getInstance();
 			
 			$req = $db->query("SET NAMES UTF8");
+			var_dump($article);
+			if(null!==$article->getId()) {
+				echo "bonjour";
+				$dateEdit = date("Y-m-d H:i:s");
+				var_dump($dateEdit);
+				var_dump($_POST['titleModified']);
+				var_dump($_POST['contentModified']);
+				var_dump($article->getId());
+				$req = $db->exec("UPDATE article SET titre ='" . $_POST['titleModified'] . "', dateEdit = '$dateEdit', contenu ='" . $_POST['contentModified'] . "' WHERE id = '" . $article->getId() . "'");
+				var_dump($req);
+				$myNewArticle->setId($article->getId());
+				$myNewArticle->setTitle($_POST['titleModified']);
+				$myNewArticle->setDateEdit($dateEdit);
+				$myNewArticle->setContent($_POST['contentModified']);
+				
+			}
+			else {
 			$req = $db->exec("INSERT INTO article(`titre`, `auteur`, `date`, `contenu`) VALUES ('" . $article->getTitle() . "', '" . $article->getAuthor() . "', '" . $article->getDatepost() . "', '" . $article->getContent() . "');");
-			var_dump($req);
+			
 			$last_ID = $db->lastInsertId();
-			var_dump($last_ID);
 			$myNewArticle->setId($last_ID);
 			$myNewArticle->setTitle($article->getTitle());
+			$myNewArticle->setContent($article->getContent());
+			}
+
 			$myNewArticle->setAuthor($article->getAuthor());
 			$myNewArticle->setDatepost($article->getDatepost());
-			$myNewArticle->setContent($article->getContent());
-			var_dump($myNewArticle);
+			
+			
 			
 			return $myNewArticle;
 		}
@@ -117,4 +136,13 @@ class ArticleDAO {
 		
 		}
 		
+		public function deleteArticle($idArticle){
+		
+			$db = SPDO::getInstance();
+			
+			$req = $db->query("SET NAMES UTF8");
+			$req = $db->exec("DELETE FROM article WHERE id = $idArticle");
+			var_dump($req);
+			
+		}
 }

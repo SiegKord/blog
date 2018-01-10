@@ -34,6 +34,7 @@
 			echo "<b>Article " . $i . ":</b></br>";
 			echo "Titre : <b> <a href='showArticle.php?id=" . $eachArt->getId() . "'>" . $eachArt->getTitle() . "</a></b></br>";
 			echo "Date : <b>" . $eachArt->getDatepost() . "</b></br>";
+			$i++;
 			
 		
 		}

@@ -29,7 +29,6 @@
 				$created->setContent($_POST['contenu']);
 				
 				$newArticle = $myDAO->setArticle($created);
-				var_dump($newArticle);
 				
 				// $myID = $myDAO->getIdfromArticle($_POST['titre'], $_POST['auteur'], $_POST['contenu']);
 				
@@ -38,7 +37,6 @@
 				// $titleDate = $myDAO->getTitleDate($myID);
 				
 				$date = $newArticle->getDatepost();
-				var_dump($date);
 				$maStringDate = $myDAO->dateToString($date);
 				
 				echo "La date de l'article '<b>" . $newArticle->getTitle() . "</b>' est le " . $maStringDate;
