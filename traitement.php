@@ -21,11 +21,17 @@
 				echo "</b> et son contenu est : <b>" . $_POST['contenu'] . "</b>";
 				echo "</br></br></br>";
 				
+				try {
+					 $dateTime = new DateTime("now", new DateTimeZone('Europe/Paris'));
+				} catch (Exception $e) {
+					echo $e->getMessage();
+				}
+				$date = $dateTime->format('Y-m-d H:i:s');
+								
 				$myDAO = new ArticleDAO;
 				$created = new Article; 
 				$created->setTitle($_POST['titre']);
 				$created->setAuthor($_POST['auteur']);
-				$created->setDatepost(date("Y-m-d H:i:s"));
 				$created->setContent($_POST['contenu']);
 				
 				$newArticle = $myDAO->setArticle($created);

@@ -2,6 +2,7 @@
 
 require "/../../db/mysqlconnec.php";
 require_once "/../entities/article.php";
+require_once "/../../controllers/Utils.php";
 
 class ArticleDAO {
 			
@@ -12,7 +13,6 @@ class ArticleDAO {
 			$myArticle = new Article;
 			$db = SPDO::getInstance();
 			
-			$req = $db->query("SET NAMES UTF8");
 			$req = $db->query("SELECT * FROM article WHERE id = $idArticle");
 			$resultArt = $req->fetch(\PDO::FETCH_ASSOC);
 			$myArticle->setTitle($resultArt['titre']);
@@ -27,37 +27,29 @@ class ArticleDAO {
 	
 		public function setArticle($article) { //contient la fonction pour créer un nouvel article et pour modifier un article
 			
-			
-			$myNewArticle = new  Article;
 			$db = SPDO::getInstance();
 			
-			$req = $db->query("SET NAMES UTF8");
-			if(null!==$article->getId()) {
-				echo "bonjour";
-				$dateEdit = date("Y-m-d H:i:s");
-				$req = $db->exec("UPDATE article SET titre ='" . $_POST['titleModified'] . "', dateEdit = '$dateEdit', contenu ='" . $_POST['contentModified'] . "' WHERE id = '" . $article->getId() . "'");
-			
-				$myNewArticle->setId($article->getId());
-				$myNewArticle->setTitle($_POST['titleModified']);
-				$myNewArticle->setDateEdit($dateEdit);
-				$myNewArticle->setContent($_POST['contentModified']);
+			if($article->getId()!=null) {
+				$article->setDateEdit(Utils::getDateTime("Europe/Paris")->format("Y-m-d H:m:s"));
+				
+				$req = $db->exec("UPDATE article SET titre ='" . $article->getTitle() . "', dateEdit = '" . $article->getDateEdit() . "', contenu ='" . $article->getContent() . "' WHERE id = '" . $article->getId() . "'");
 				
 			}
 			else {
 			$req = $db->exec("INSERT INTO article(`titre`, `auteur`, `date`, `contenu`) VALUES ('" . $article->getTitle() . "', '" . $article->getAuthor() . "', '" . $article->getDatepost() . "', '" . $article->getContent() . "');");
 			
 			$last_ID = $db->lastInsertId();
-			$myNewArticle->setId($last_ID);
-			$myNewArticle->setTitle($article->getTitle());
-			$myNewArticle->setContent($article->getContent());
+			$article->setId($last_ID);
+			$article->setTitle($article->getTitle());
+			$article->setContent($article->getContent());
 			}
 
-			$myNewArticle->setAuthor($article->getAuthor());
-			$myNewArticle->setDatepost($article->getDatepost());
+			$article->setAuthor($article->getAuthor());
+			$article->setDatepost($article->getDatepost());
 			
 			
 			
-			return $myNewArticle;
+			return $article;
 		}
 		
 		public function get5Articles() {
@@ -67,7 +59,6 @@ class ArticleDAO {
 			$article = [];
 			
 			$db = SPDO::getInstance();
-			$req = $db->query("SET NAMES UTF8");
 			$req = $db->query("SELECT id FROM article ORDER BY date DESC LIMIT 0,5");
 			$result = $req->fetchAll(\PDO::FETCH_ASSOC);
 			foreach($result as $data) {
@@ -89,7 +80,6 @@ class ArticleDAO {
 			$myTitleDate = new Article;
 			
 			$db = SPDO::getInstance();
-			$req = $db->query("SET NAMES UTF8");
 			$req = $db->query("SELECT titre, date FROM article WHERE id = '$idPost'");
 			$resultreq = $req->fetch(\PDO::FETCH_ASSOC);
 			
@@ -104,7 +94,6 @@ class ArticleDAO {
 			$myIDfromArticle = new Article;
 			$db = SPDO::getInstance();
 			
-			$req = $db->query("SET NAMES UTF8");
 			$req = $db->query("SELECT id FROM article WHERE titre = '$title' AND auteur = '$author' AND contenu = '$content'");
 			$resultreq = $req->fetch(\PDO::FETCH_ASSOC);
 			
@@ -135,7 +124,6 @@ class ArticleDAO {
 		
 			$db = SPDO::getInstance();
 			
-			$req = $db->query("SET NAMES UTF8");
 			$req = $db->exec("DELETE FROM article WHERE id = $idArticle");
 			var_dump($req);
 			

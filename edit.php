@@ -26,13 +26,15 @@
 			echo "<p>Contenu de l'article : <textarea name=\"contentModified\">" . $article->getContent() . "</textarea></p></br>";
 			echo "<input type=\"submit\" name = \"submit\" value=\"Valider\"/>";
 			echo "</form></br></br>";
-			if(isset($_POST['submit'])) {
-				if(empty($_POST['titleModified']) || empty($_POST['contentModified'])) {
-					echo "Un ou plusieurs champs sont manquants, veuillez resaisir les informations.";
+			if(isset($_POST['action'])) {
+				if(!empty($_POST['titleModified']) && !empty($_POST['contentModified'])) {
+					$article->setTitle($_POST['titleModified']);
+					$article->setContent($_POST['contentModified']);
+					$myDAO->setArticle($article);
+				var_dump($updatedArticle);
 				}
 				else {
-				$updatedArticle = $myDAO->setArticle($article);
-				var_dump($updatedArticle);
+					echo "Un ou plusieurs champs sont manquants, veuillez resaisir les informations.";
 				}
 			}
 			

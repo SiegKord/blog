@@ -10,6 +10,17 @@
 		private $author = "";
 		private $content = "";
 		
+		function __construct() {
+		
+			//constructeur de la classe Article
+			try {
+				$dateTime = new DateTime("now", new DateTimeZone('Europe/Paris'));
+			} catch (Exception $e) {
+				echo $e->getMessage();
+			}
+			$this->setDatePost($dateTime->format('Y-m-d H:i:s'));
+		
+		}
 		
 		public function getId() {
 			

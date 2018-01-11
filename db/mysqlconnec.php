@@ -59,7 +59,9 @@ class SPDO
    */
   private function __construct()
   {
-    $this->PDOInstance = new PDO('mysql:dbname='.self::DEFAULT_SQL_DTB.';host='.self::DEFAULT_SQL_HOST,self::DEFAULT_SQL_USER ,self::DEFAULT_SQL_PASS);    
+    $this->PDOInstance = new PDO('mysql:dbname='.self::DEFAULT_SQL_DTB.';host='.self::DEFAULT_SQL_HOST.';charset=utf8',self::DEFAULT_SQL_USER ,self::DEFAULT_SQL_PASS);    
+	// $this->PDOInstance = 'mysql:host='.self::DEFAULT_SQL_HOST.';dbname='.self::DEFAULT_SQL_DTB.';charset=utf8';
+	// $this->PDOInstance = new PDO($this->PDOInstance, self::DEFAULT_SQL_USER, self::DEFAULT_SQL_PASS);
   }
  
    /**
