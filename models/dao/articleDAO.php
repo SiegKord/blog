@@ -6,34 +6,35 @@ require_once "/../../controllers/Utils.php";
 
 class ArticleDAO {
 			
-		
+
 		public function getArticle($idArticle) {
-	
-		
+
 			$myArticle = new Article;
 			$db = SPDO::getInstance();
-			
+	
 			$req = $db->query("SELECT * FROM article WHERE id = $idArticle");
 			$resultArt = $req->fetch(\PDO::FETCH_ASSOC);
 			$myArticle->setTitle($resultArt['titre']);
 			$myArticle->setAuthor($resultArt['auteur']);
 			$myArticle->setDatepost($resultArt['date']);
+			$myArticle->setDateEdit($resultArt['dateEdit']);
 			$myArticle->setContent($resultArt['contenu']);
 			$myArticle->setId($resultArt['id']);
 			
 			return $myArticle;
-			
+
 		}
-	
+
 		public function setArticle($article) { //contient la fonction pour créer un nouvel article et pour modifier un article
-			
+
 			$db = SPDO::getInstance();
-			
+
 			if($article->getId()!=null) {
-				$article->setDateEdit(Utils::getDateTime("Europe/Paris")->format("Y-m-d H:m:s"));
-				
-				$req = $db->exec("UPDATE article SET titre ='" . $article->getTitle() . "', dateEdit = '" . $article->getDateEdit() . "', contenu ='" . $article->getContent() . "' WHERE id = '" . $article->getId() . "'");
-				
+				$article->setDateEdit(Utils::getDateTime("Europe/Paris"));
+				var_dump($article);
+
+				$req = $db->exec("UPDATE article SET titre ='" . $article->getTitle() . "', dateEdit = " . $article->getDateEdit() . ", contenu ='" . $article->getContent() . "' WHERE id = '" . $article->getId() . "'");
+				var_dump($req);
 			}
 			else {
 			$req = $db->exec("INSERT INTO article(`titre`, `auteur`, `date`, `contenu`) VALUES ('" . $article->getTitle() . "', '" . $article->getAuthor() . "', '" . $article->getDatepost() . "', '" . $article->getContent() . "');");
