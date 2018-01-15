@@ -31,10 +31,9 @@ class ArticleDAO {
 
 			if($article->getId()!=null) {
 				$article->setDateEdit(time());
-				var_dump($article);
 
 				$req = $db->exec("UPDATE article SET titre ='" . $article->getTitle() . "', dateEdit = " . $article->getDateEdit() . ", contenu ='" . $article->getContent() . "' WHERE id = '" . $article->getId() . "'");
-				var_dump($req);
+
 			}
 			else {
 			$req = $db->exec("INSERT INTO article(`titre`, `auteur`, `date`, `contenu`) VALUES ('" . $article->getTitle() . "', '" . $article->getAuthor() . "', '" . $article->getDatepost() . "', '" . $article->getContent() . "');");
