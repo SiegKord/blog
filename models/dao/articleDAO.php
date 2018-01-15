@@ -30,7 +30,7 @@ class ArticleDAO {
 			$db = SPDO::getInstance();
 
 			if($article->getId()!=null) {
-				$article->setDateEdit(Utils::getDateTime("Europe/Paris"));
+				$article->setDateEdit(time());
 				var_dump($article);
 
 				$req = $db->exec("UPDATE article SET titre ='" . $article->getTitle() . "', dateEdit = " . $article->getDateEdit() . ", contenu ='" . $article->getContent() . "' WHERE id = '" . $article->getId() . "'");
