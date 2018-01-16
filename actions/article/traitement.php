@@ -10,7 +10,7 @@
 		<h1>Article créé</h1>
 	
 			<?php 
-				require_once "../models/dao/ArticleDAO.php";
+				require_once "../../models/dao/ArticleDAO.php";
 
 				echo "Votre titre d'article est <b>" . $_POST['titre'] . "</b>. L'auteur de l'article est <b>";
 				if(empty($_POST['auteur'])) 
@@ -47,7 +47,7 @@
 				
 				echo "La date de l'article '<b>" . $newArticle->getTitle() . "</b>' est le " . $maStringDate . "</br></br></br>";
 				
-				echo "<a href = '../accueil.php'>Retour à l'accueil</a>";
+				echo "<a href = '../../accueil.php'>Retour à l'accueil</a>";
 				
 				// $date = $titleDate->getDatepost();
 				

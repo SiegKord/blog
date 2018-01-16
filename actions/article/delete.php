@@ -7,17 +7,17 @@
 
 	<body>
 
-		<h1>Modification</h1>
+		<h1>Suppression</h1>
 
 
 		<?php	
 
-			require_once "../models/dao/ArticleDAO.php";
+			require_once "../../models/dao/ArticleDAO.php";
 
 			$myDAO = new ArticleDAO;
 			$myDAO->deleteArticle($_GET['id']);
 
-			header('Location: ../accueil.php');
+			header('Location: ../../accueil.php');
 
 		?>
 

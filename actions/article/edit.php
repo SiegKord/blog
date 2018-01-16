@@ -12,7 +12,7 @@
 		
 		<?php	
 		
-			require_once "../models/dao/ArticleDAO.php";
+			require_once "../../models/dao/ArticleDAO.php";
 		
 			$myDAO = new ArticleDAO;
 			
@@ -23,7 +23,7 @@
 					$article->setTitle($_POST['titleModified']);
 					$article->setContent($_POST['contentModified']);
 					$myDAO->setArticle($article);
-					echo "Les changements ont bien été effectué, veuillez retourner à l'accueil <a href=\"../accueil.php\">ICI</a>.";
+					echo "Les changements ont bien été effectué, veuillez retourner à l'accueil <a href=\"../../accueil.php\">ICI</a>.";
 				
 				}
 				else {
@@ -38,11 +38,6 @@
 			echo "<p>Contenu de l'article : <textarea name=\"contentModified\">" . $article->getContent() . "</textarea></p></br>";
 			echo "<input type=\"submit\" name = \"submit\" value=\"Valider\"/>";
 			echo "</form></br></br>";
-			
-			
-			
-			
-			
 		
 		?>
 		

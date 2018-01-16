@@ -8,14 +8,12 @@
 	<body>
 	
 		<h1>Formulaire de création d'utilisateur</h1>
-	
 
-		
 		<?php
 		
-		require_once "/../models/dao/userDAO.php";
-		require_once "/../models/entities/user.php";
-		require "/../controllers/Utils.php";
+		require_once "/../../models/dao/userDAO.php";
+		require_once "/../../models/entities/user.php";
+		require "/../../controllers/Utils.php";
 		
 		$myDAO = new UserDAO;
 		$created = new User;
@@ -31,7 +29,7 @@
 				echo "Votre utilisateur a été créé avec succès !";
 			}
 			else {
-				echo "<b>Tous les champs ne sont pas complétés. Veuillez revenir au <a href=\"addUser.php\">formulaire</a></b>";
+				echo "<b>Tous les champs ne sont pas complétés.</b>";
 			}
 		}
 		
@@ -49,6 +47,10 @@
 		
 		echo "</form>";
 		echo "</br></br>";
+		
+		echo "<a href=\"../../gestionUser.php\"><b>GESTION UTILISATEURS</b></a>";
+		
 		?>
+		
 	</body>
 </html>

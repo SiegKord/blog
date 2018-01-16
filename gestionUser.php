@@ -21,10 +21,11 @@
 		$myDAO = new UserDAO;
 		$user = $myDAO->getUser(1);
 		
-		echo "<a href=\"actions/addUser.php\"><b>Créer un utilisateur</b></a></br></br></br></br>";
+		echo "<a href=\"actions/user/addUser.php\"><b>Créer un utilisateur</b></a></br></br>";
+		echo "<a href=\"accueil.php\"><b>Retour à l'accueil</b></a></br></br>";
 		
 		echo "---------------------------------------------</br>";
-		echo "<u>Fonction getUser(\$idUser) :</u></br>";
+		echo "<u>Fonction getUser(\$idUser = 1) :</u></br>";
 		echo "<b>Utilisateur :</b></br>";
 		echo $user->getPseudo() . "</br>" . $user->getNom() . $user->getPrenom() . "</br>";
 		echo "Né le " . $user->getBirthdate() . "</br>";
@@ -39,9 +40,14 @@
 		
 		foreach($users as $eachUser){
 			echo "<b>Utilisateur " . $i . "</b></br>";
-			echo $user->getPseudo() . "</br>" . $user->getNom() . $user->getPrenom() . "</br>";
-			echo "Né le " . $user->getBirthdate() . "</br>";
-			echo "Email : " . $user->getEmail() . "</br>";
+			echo "Pseudo : " . $eachUser->getPseudo() . "</br>Identité : " . $eachUser->getNom() . " " . $eachUser->getPrenom() . "</br>";
+			echo "Né le " . $eachUser->getBirthdate() . "</br>";
+			echo "Email : " . $eachUser->getEmail() . "</br>";
+			echo "<form method=\"post\" name=\"modifyUser\" action=\"actions/user/modifyUser.php?id=" . $eachUser->getId() . "\">";
+			echo "<input type=\"submit\" value=\"Modifier l'utilisateur\"/>";	
+			echo "</form>";
+			echo "<a href=\"actions/user/deleteUser.php?id=" . $eachUser->getId() . "\">Supprimer l'utilisateur</a></br>";
+		
 			$i++;
 		}
 

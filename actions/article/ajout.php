@@ -18,9 +18,7 @@
 			<p>Tapez votre article : <textarea name="contenu">
 			</textarea></p>
 			<input type="submit" value="Envoyer" onClick="NoAuthor(); return false;"/>		
-			<input type="reset" value="Effacer" />
-			
-		
+			<input type="reset" value="Effacer" />		
 		</form>
 		</br>
 		<script type="text/javascript">		
@@ -35,7 +33,7 @@
 		
 		
 		<?php	
-		
+			echo "<a href=\"../../accueil.php\"><b>Retour à l'accueil</b></a>";
 		?>
 		
 	</body>

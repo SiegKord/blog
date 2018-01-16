@@ -28,7 +28,7 @@
 		echo "------------";
 		echo '<br><br><br>';
 		
-		echo "<a href= 'actions/ajout.php'>Créer un article</a></br></br>";
+		echo "<a href= 'actions/article/ajout.php'>Créer un article</a></br></br>";
 		
 		echo "<a href=\"gestionUser.php\"><b>GESTION UTILISATEURS</b></a></br></br></br>";
 		
@@ -42,10 +42,10 @@
 			echo "Date : <b>" . $eachArt->getDatepost() . "</b></br>";
 			if($eachArt->getDateEdit())
 				echo "Edité le : " . Utils::getDateTime("Europe/Paris", $eachArt->getDateEdit()) . ".</br>";
-			echo "<form method=\"post\" name=\"edit\" action=\"actions/edit.php?id=" . $eachArt->getId() . "\">";
+			echo "<form method=\"post\" name=\"edit\" action=\"actions/article/edit.php?id=" . $eachArt->getId() . "\">";
 			echo "<input type=\"submit\" value=\"Modifier\"/>";	
 			echo "</form>";
-			echo "<a href = 'actions/delete.php?id=" . $eachArt->getId() . "'>Supprimer l'article</a></br></br>";
+			echo "<a href = 'actions/article/delete.php?id=" . $eachArt->getId() . "'>Supprimer l'article</a></br></br>";
 			$i++;
 			
 		}

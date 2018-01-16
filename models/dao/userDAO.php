@@ -26,8 +26,15 @@ class UserDAO {
 	public function setUser($user) { 
 
 			$db = SPDO::getInstance();
-
+			
+			if($user->getId() !==null) {
+				$req = $db->exec("UPDATE user SET pseudo ='" . $user->getPseudo() . "', email = '" . $user->getEmail() . "' WHERE id = '" . $user->getId() . "'");
+				
+			}
+			else {
 			$req = $db->exec("INSERT INTO user(`pseudo`, `nom`, `prenom`, `birthdate`, `email`) VALUES ('" . $user->getPseudo() . "', '" . $user->getNom() . "', '" . $user->getPrenom() . "', '" . $user->getBirthdate() . "', '" . $user->getEmail() . "');");
+			}
+			
 			
 			$last_ID = $db->lastInsertId();
 			$user->setId($last_ID);
@@ -64,6 +71,13 @@ class UserDAO {
 			
 						
 				
+	}
+	
+	public function deleteUser($idUser) {
+		
+		$db = SPDO::getInstance();
+			
+		$req = $db->exec("DELETE FROM user WHERE id = $idUser");
 	}
 
 }

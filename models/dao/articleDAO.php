@@ -125,7 +125,6 @@ class ArticleDAO {
 			$db = SPDO::getInstance();
 			
 			$req = $db->exec("DELETE FROM article WHERE id = $idArticle");
-			var_dump($req);
 			
 		}
 }
