@@ -16,8 +16,8 @@
 	
 		<?php
 		
-			require "/article.php";
-			require "/includes/conf.php";
+			require_once "/article.php";
+			require_once "/includes/conf.php";
 		
 			$monArticle = new Article;
 			$monArticle->setTitle("Voyage en haute mer");

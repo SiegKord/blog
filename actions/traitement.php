@@ -10,7 +10,7 @@
 		<h1>Article créé</h1>
 	
 			<?php 
-				require "../models/dao/ArticleDAO.php";
+				require_once "../models/dao/ArticleDAO.php";
 
 				echo "Votre titre d'article est <b>" . $_POST['titre'] . "</b>. L'auteur de l'article est <b>";
 				if(empty($_POST['auteur'])) 

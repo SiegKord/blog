@@ -12,4 +12,10 @@
 
 		}
 		
+		public static function fillChampForm($value){
+			if(isset($_POST[$value]))
+				return $_POST[$value];
+		
+		}
+		
 	}

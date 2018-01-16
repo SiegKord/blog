@@ -16,7 +16,7 @@
 	
 		<?php
 		
-			require "/models/dao/ArticleDAO.php";
+			require_once "/models/dao/ArticleDAO.php";
 		
 			echo "L'id de l'article demandé est : " . $_GET['id'] . ".</br></br>";
 			

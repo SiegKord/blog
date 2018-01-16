@@ -1,6 +1,6 @@
 <?php
 
-require "/../../db/mysqlconnec.php";
+require_once "/../../db/SPDO.php";
 require_once "/../entities/article.php";
 require_once "/../../controllers/Utils.php";
 

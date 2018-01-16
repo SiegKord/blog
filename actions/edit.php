@@ -12,7 +12,7 @@
 		
 		<?php	
 		
-			require "../models/dao/ArticleDAO.php";
+			require_once "../models/dao/ArticleDAO.php";
 		
 			$myDAO = new ArticleDAO;
 			

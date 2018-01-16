@@ -1,6 +1,6 @@
 <?php
  
-
+require_once "/../config/config.php";
 
 class SPDO
 {
@@ -26,28 +26,28 @@ class SPDO
    *
    * @var string
    */
-  const DEFAULT_SQL_USER = 'root';
+  const DEFAULT_SQL_USER = SQL_USER;
  
   /**
    * Constante: hôte de la bdd
    *
    * @var string
    */
-  const DEFAULT_SQL_HOST = 'localhost';
+  const DEFAULT_SQL_HOST = SQL_HOST;
  
   /**
    * Constante: hôte de la bdd
    *
    * @var string
    */
-  const DEFAULT_SQL_PASS = '';
+  const DEFAULT_SQL_PASS = SQL_PASS;
  
   /**
    * Constante: nom de la bdd
    *
    * @var string
    */
-  const DEFAULT_SQL_DTB = 'blog';
+  const DEFAULT_SQL_DB = SQL_DB;
  
   /**
    * Constructeur
@@ -59,7 +59,7 @@ class SPDO
    */
   private function __construct()
   {
-    $this->PDOInstance = new PDO('mysql:dbname='.self::DEFAULT_SQL_DTB.';host='.self::DEFAULT_SQL_HOST.';charset=utf8',self::DEFAULT_SQL_USER ,self::DEFAULT_SQL_PASS);    
+    $this->PDOInstance = new PDO('mysql:dbname='.self::DEFAULT_SQL_DB.';host='.self::DEFAULT_SQL_HOST.';charset=utf8',self::DEFAULT_SQL_USER ,self::DEFAULT_SQL_PASS);    
 	// $this->PDOInstance = 'mysql:host='.self::DEFAULT_SQL_HOST.';dbname='.self::DEFAULT_SQL_DTB.';charset=utf8';
 	// $this->PDOInstance = new PDO($this->PDOInstance, self::DEFAULT_SQL_USER, self::DEFAULT_SQL_PASS);
   }

@@ -16,7 +16,7 @@
 	
 		<?php
 		
-		require "/models/dao/ArticleDAO.php";
+		require_once "/models/dao/ArticleDAO.php";
 		require_once "/controllers/Utils.php";
 		
 		$myDao = new ArticleDAO;	
@@ -29,6 +29,8 @@
 		echo '<br><br><br>';
 		
 		echo "<a href= 'actions/ajout.php'>Créer un article</a></br></br>";
+		
+		echo "<a href=\"gestionUser.php\"><b>GESTION UTILISATEURS</b></a></br></br></br>";
 		
 		
 		$articles = $myDao->get5Articles();
