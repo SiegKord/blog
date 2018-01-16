@@ -4,6 +4,7 @@
 		
 		private $id;
 		private $pseudo = "";
+		private $mdp = "";
 		private $nom = "";
 		private $prenom = "";
 		private $birthdate = "";
@@ -27,6 +28,15 @@
 		public function setPseudo($value) {
 			
 			$this->pseudo = $value;
+		}
+		public function getMdp() {
+			
+			return $this->mdp;
+		}
+		
+		public function setMdp($value) {
+			
+			$this->mdp = $value;
 		}
 		
 		public function getNom() {

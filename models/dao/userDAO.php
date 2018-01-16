@@ -14,6 +14,7 @@ class UserDAO {
 		$req = $db->query("SELECT * FROM user WHERE id = $idUser");
 		$resultArt = $req->fetch(\PDO::FETCH_ASSOC);
 		$myUser->setPseudo($resultArt['pseudo']);
+		$myUser->setMdp($resultArt['mdp']);
 		$myUser->setNom($resultArt['nom']);
 		$myUser->setPrenom($resultArt['prenom']);
 		$myUser->setBirthdate($resultArt['birthdate']);
@@ -32,13 +33,14 @@ class UserDAO {
 				
 			}
 			else {
-			$req = $db->exec("INSERT INTO user(`pseudo`, `nom`, `prenom`, `birthdate`, `email`) VALUES ('" . $user->getPseudo() . "', '" . $user->getNom() . "', '" . $user->getPrenom() . "', '" . $user->getBirthdate() . "', '" . $user->getEmail() . "');");
+			$req = $db->exec("INSERT INTO user(`pseudo`, `mdp`, `nom`, `prenom`, `birthdate`, `email`) VALUES ('" . $user->getPseudo() . "', '" . $user->getMdp() . "', '" . $user->getNom() . "', '" . $user->getPrenom() . "', '" . $user->getBirthdate() . "', '" . $user->getEmail() . "');");
 			}
 			
 			
 			$last_ID = $db->lastInsertId();
 			$user->setId($last_ID);
 			$user->setPseudo($user->getPseudo());
+			$user->setMdp($user->getMdp());
 			$user->setNom($user->getNom());
 			$user->setPrenom($user->getPrenom());
 			$user->setBirthdate($user->getBirthdate());
@@ -79,5 +81,30 @@ class UserDAO {
 			
 		$req = $db->exec("DELETE FROM user WHERE id = $idUser");
 	}
+	
+	public function verifPseudo($pseudo) {
+		
+		$db = SPDO::getInstance();
+		$req = $db->query("SELECT id FROM user WHERE pseudo = '$pseudo'");
+		$result = $req->fetchAll(\PDO::FETCH_ASSOC);
+		if(!empty($result))
+			return 1;
+		else
+			return 0;
+
+	}
+	
+	public function verifEmail($email) {
+		
+		$db = SPDO::getInstance();
+		$req = $db->query("SELECT id FROM user WHERE email = '$email'");
+		$result = $req->fetchAll(\PDO::FETCH_ASSOC);
+		if(!empty($result))
+			return 1;
+		else 
+			return 0;
+		
+	}
+		
 
 }

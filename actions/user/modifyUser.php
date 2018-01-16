@@ -22,6 +22,7 @@
 		if(isset($_POST['submit'])) {
 			if(!empty($_POST['pseudoModified']) && !empty($_POST['emailModified'])) {
 				$user->setPseudo($_POST['pseudoModified']);
+				$user->setMdp($_POST['mdpModified']);
 				$user->setEmail($_POST['emailModified']);
 				$myDAO->setUser($user);
 				echo "Les changements ont bien été effectué, veuillez retourner au gestionnaire <a href=\"../../gestionUser.php\">ICI</a>.";
@@ -36,6 +37,7 @@
 			
 			echo "<form method=\"post\" name=\"modifyUser\" action=\"\"";
 			echo "<p>Pseudo : <input type=\"text\" name=\"pseudoModified\" value=\"" . $user->getPseudo() . "\"/></p></br>";
+			echo "<p>Mot de passe : <input type=\"text\" name=\"mdpModified\" value=\"" . $user->getMdp() . "\"/></p></br>";
 			echo "<p>Email : <input type=\"text\" name=\"emailModified\" value =\"" . $user->getEmail() . "\"/></p></br>";
 			echo "<input type=\"submit\" name = \"submit\" value=\"Valider\"/>";
 			echo "</form></br></br>";
