@@ -13,8 +13,8 @@
 		}
 		
 		public static function fillChampForm($value){
-			if(isset($_POST[$value]))
-				return $_POST[$value];
+			if(isset($value))
+				return $value;
 		
 		}
 		

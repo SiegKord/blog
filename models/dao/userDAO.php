@@ -29,7 +29,7 @@ class UserDAO {
 			$db = SPDO::getInstance();
 			
 			if($user->getId() !==null) {
-				$req = $db->exec("UPDATE user SET pseudo ='" . $user->getPseudo() . "', email = '" . $user->getEmail() . "' WHERE id = '" . $user->getId() . "'");
+				$req = $db->exec("UPDATE user SET pseudo ='" . $user->getPseudo() . "', mdp = '" . $user->getMdp() . "', email = '" . $user->getEmail() . "' WHERE id = '" . $user->getId() . "'");
 				
 			}
 			else {
@@ -82,27 +82,27 @@ class UserDAO {
 		$req = $db->exec("DELETE FROM user WHERE id = $idUser");
 	}
 	
-	public function verifPseudo($pseudo) {
+	public function alreadyUsedPseudo($pseudo) {
 		
 		$db = SPDO::getInstance();
-		$req = $db->query("SELECT id FROM user WHERE pseudo = '$pseudo'");
-		$result = $req->fetchAll(\PDO::FETCH_ASSOC);
-		if(!empty($result))
-			return 1;
+		$req = $db->query("SELECT COUNT(*) FROM user WHERE pseudo = '$pseudo'");
+		$result = $req->fetchColumn();
+		if($result>0)
+			return true;
 		else
-			return 0;
+			return false;
 
 	}
 	
-	public function verifEmail($email) {
+	public function alreadyUsedEmail($email) {
 		
 		$db = SPDO::getInstance();
 		$req = $db->query("SELECT id FROM user WHERE email = '$email'");
-		$result = $req->fetchAll(\PDO::FETCH_ASSOC);
-		if(!empty($result))
-			return 1;
-		else 
-			return 0;
+		$result = $req->fetchColumn();
+		if($result>0)
+			return true;
+		else
+			return false;
 		
 	}
 		

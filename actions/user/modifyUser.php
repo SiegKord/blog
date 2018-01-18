@@ -20,7 +20,7 @@
 		$user = $myDAO->getUser($_GET['id']);
 
 		if(isset($_POST['submit'])) {
-			if(!empty($_POST['pseudoModified']) && !empty($_POST['emailModified'])) {
+			if(!empty($_POST['pseudoModified']) && !empty($_POST['emailModified']) && !empty($_POST['mdpModified'])) {
 				$user->setPseudo($_POST['pseudoModified']);
 				$user->setMdp($_POST['mdpModified']);
 				$user->setEmail($_POST['emailModified']);
