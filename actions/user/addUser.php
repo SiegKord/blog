@@ -77,6 +77,9 @@
 				$newUser = $myDAO->setUser($created);
 				echo "Votre utilisateur a été créé avec succès !</br>";
 			}
+			else {
+				echo "Une erreur est survenue.";
+			}
 		}
 		
 		echo "<form method=\"post\" name=\"formulaire\" action=\"\">";
