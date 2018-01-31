@@ -49,6 +49,7 @@
 			echo "<input type=\"submit\" value=\"Modifier l'utilisateur\"/>";	
 			echo "</form>";
 			echo "<a href=\"actions/user/deleteUser.php?id=" . $eachUser->getId() . "\">Supprimer l'utilisateur</a></br>";
+			echo "<a href=\"actions/user/infoUser.php?id=" . $eachUser->getId() . "\">Plus d'infos</a></br></br>";
 		
 			$i++;
 		}

@@ -106,5 +106,15 @@ class UserDAO {
 		
 	}
 		
-
+	public function nbArticle($idArticle){
+		
+		$db = SPDO::getInstance();
+		$req = $db->query("SELECT COUNT(auteur_id) FROM article INNER JOIN user ON user.id = article.auteur_id WHERE article.auteur_id = '$idArticle'");
+		$result = $req->fetch(\PDO::FETCH_ASSOC);
+		var_dump($result);
+		$nbArticle = $result['COUNT(auteur_id)'];
+		
+		
+		return $nbArticle;
+	}
 }

@@ -29,7 +29,7 @@
 				$date = $dateTime->format('Y-m-d H:i:s');
 			
 				$myDAO = new ArticleDAO;
-				$created = new Article; 
+				$created = new Article;
 				$created->setTitle($_POST['titre']);
 				$created->setAuthor($_POST['auteur']);
 				$created->setContent($_POST['contenu']);

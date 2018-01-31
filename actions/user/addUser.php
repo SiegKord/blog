@@ -17,37 +17,8 @@
 		
 		$myDAO = new UserDAO;
 		$created = new User;
-		// if(isset($_POST['submit'])) {
-			// if(!empty($_POST['pseudo']) && !empty($_POST['nom']) && !empty($_POST['mdp']) && !empty($_POST['prenom']) && !empty($_POST['birthdate']) && !empty($_POST['email'])) {
-				// if(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) { // vérification du format de l'adresse mail
-					// if(!$myDAO->alreadyUsedPseudo($_POST['pseudo'])){
-						// if(!$myDAO->alreadyUsedEmail($_POST['email'])){
-							// $created->setPseudo($_POST['pseudo']);
-							// $created->setMdp($_POST['mdp']);
-							// $created->setNom($_POST['nom']);
-							// $created->setPrenom($_POST['prenom']);
-							// $created->setBirthdate($_POST['birthdate']);
-							// $created->setEmail($_POST['email']);
-						
-							// $newUser = $myDAO->setUser($created);
-							// echo "Votre utilisateur a été créé avec succès !";
-						// }
-						// else {
-							// echo "Cet email est déjà utilisé.";
-						// }
-					// }
-					// else {
-						// echo "Ce pseudo est déjà utilisé.";
-					// }
-				// }
-				// else {
-					// echo "L'adresse mail n'est pas valide";
-				// }
-			// }
-			// else {
-				// echo "<b>Tous les champs ne sont pas complétés.</b>";
-			// }
-		// }
+
+		$error = false;
 		
 		if(isset($_POST['submit'])) {
 			if(empty($_POST['pseudo']) || empty($_POST['mdp']) || empty($_POST['nom']) || empty($_POST['prenom']) || empty($_POST['birthdate']) || empty($_POST['email'])) {
@@ -58,11 +29,11 @@
 				echo "L'adresse mail n'est pas valide</br>";
 				$error = true;
 			}
-			if($myDAO->alreadyUsedPseudo($_POST['pseudo'])){
+			if($myDAO->alreadyUsedPseudo($_POST['pseudo']) && $_POST['pseudo']){
 				echo "Ce pseudo est déjà utilisé.</br>";
 				$error = true;
 			}
-			if($myDAO->alreadyUsedEmail($_POST['email'])){
+			if($myDAO->alreadyUsedEmail($_POST['email']) && $_POST['email']){
 				echo "Cet email est déjà utilisé.</br>";
 				$error = true;
 			}
