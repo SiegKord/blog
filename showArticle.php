@@ -24,7 +24,7 @@
 			$article = $myDAO->getArticle($_GET['id']);
 			
 			echo "Titre : " . $article->getTitle() . "</br>";
-			echo "Auteur : " . $article->getAuthor() . "</br>";
+			echo "Auteur : " . $article->getAuthor()->getPseudo() . "</br>";
 			echo "Date : " . $article->getDatepost() . "</br>";
 			echo "Contenu : " . $article->getContent() . "</br>";
 			

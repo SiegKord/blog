@@ -34,7 +34,7 @@
 		
 		echo "---------------------------------------------</br></br>";
 		
-		$users = $myDAO->get5Users();
+		$users = $myDAO->get7Users();
 		$i = 1;
 		
 		echo "<u>Fonction get5Users(\$user) : </u></br>";

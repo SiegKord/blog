@@ -8,13 +8,29 @@
 	<body>
 	
 		<h1>Formulaire de création d'article</h1>
+		
+		<?php
+		
+			require_once "../../models/dao/userDAO.php";
+			
+			$myDAO = new userDAO;
+			$myUsers = $myDAO->getAllUsers();
+			$i;
+		?>
 	
 		<form method="post" name="formulaire" action="traitement.php">
 		
 			<p>Nom de l'article : <input type="text" name="titre" /></p>
 			</br>
-			<p>Nom de l'auteur (peut être laissé vide) : <input type="text" name="auteur" /></p>
-			</br>
+			<label for="auteur">Identifiant de l'auteur : </label></br>
+			<select name="auteur">
+				<?php
+					foreach($myUsers as $eachUser){
+						echo "<option value='" . $eachUser->getId() . "'>" . $eachUser->getPseudo() . "</option>";
+						$i++;
+					}				
+				?>
+			</select>
 			<p>Tapez votre article : <textarea name="contenu">
 			</textarea></p>
 			<input type="submit" value="Envoyer" onClick="NoAuthor(); return false;"/>		

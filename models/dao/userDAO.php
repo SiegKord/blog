@@ -8,10 +8,14 @@ class UserDAO {
 	
 	public function getUser($idUser) {
 		
+		if($idUser == null)
+			return null;
 		$myUser = new User;
 		$db = SPDO::getInstance();
-	
+		
 		$req = $db->query("SELECT * FROM user WHERE id = $idUser");
+		if($req == false)
+			return null;
 		$resultArt = $req->fetch(\PDO::FETCH_ASSOC);
 		$myUser->setPseudo($resultArt['pseudo']);
 		$myUser->setMdp($resultArt['mdp']);
@@ -50,16 +54,14 @@ class UserDAO {
 
 			
 	}
-	
-		
-	public function get5Users() {
+	public function getAllUsers() {
 		
 		$userlist = new UserDAO;
 		$listeIDs = [];
 		$user = [];
 			
 		$db = SPDO::getInstance();
-		$req = $db->query("SELECT id FROM user ORDER BY pseudo LIMIT 0,5");
+		$req = $db->query("SELECT id FROM user ORDER BY pseudo");
 		$result = $req->fetchAll(\PDO::FETCH_ASSOC);
 		foreach($result as $data) {
 			$listeIDs[] = $data['id'];
@@ -69,10 +71,27 @@ class UserDAO {
 			
 			
 		}
-		return $user;
+		return $user;	
+	}
+		
+	public function get7Users() {
+		
+		$userlist = new UserDAO;
+		$listeIDs = [];
+		$user = [];
 			
-						
-				
+		$db = SPDO::getInstance();
+		$req = $db->query("SELECT id FROM user ORDER BY pseudo LIMIT 0,7");
+		$result = $req->fetchAll(\PDO::FETCH_ASSOC);
+		foreach($result as $data) {
+			$listeIDs[] = $data['id'];
+		}
+		foreach($listeIDs as $idUser){
+			$user[] = $userlist->getUser($idUser);
+			
+			
+		}
+		return $user;	
 	}
 	
 	public function deleteUser($idUser) {
@@ -117,4 +136,6 @@ class UserDAO {
 		
 		return $nbArticle;
 	}
+	
+	
 }

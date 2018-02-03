@@ -3,6 +3,7 @@
 require_once "/../../db/SPDO.php";
 require_once "/../entities/article.php";
 require_once "/../../controllers/Utils.php";
+require_once "userDAO.php";
 
 class ArticleDAO {
 			
@@ -10,17 +11,17 @@ class ArticleDAO {
 		public function getArticle($idArticle) {
 
 			$myArticle = new Article;
+			$myUserDAO = new UserDAO;
 			$db = SPDO::getInstance();
 	
 			$req = $db->query("SELECT * FROM article WHERE id = $idArticle");
 			$resultArt = $req->fetch(\PDO::FETCH_ASSOC);
 			$myArticle->setTitle($resultArt['titre']);
-			$myArticle->setAuthor($resultArt['auteur']);
+			$myArticle->setAuthor($myUserDAO->getUser($resultArt['auteur_id']));
 			$myArticle->setDatepost($resultArt['date']);
 			$myArticle->setDateEdit($resultArt['dateEdit']);
 			$myArticle->setContent($resultArt['contenu']);
 			$myArticle->setId($resultArt['id']);
-			
 			return $myArticle;
 
 		}
@@ -36,8 +37,8 @@ class ArticleDAO {
 
 			}
 			else {
-			$req = $db->exec("INSERT INTO article(`titre`, `auteur`, `date`, `contenu`) VALUES ('" . $article->getTitle() . "', '" . $article->getAuthor() . "', '" . $article->getDatepost() . "', '" . $article->getContent() . "');");
-			
+			$req = $db->exec("INSERT INTO article(`titre`, `auteur_id`, `date`, `contenu`) VALUES ('" . $article->getTitle() . "', '" . $article->getAuthor() . "', '" . $article->getDatepost() . "', '" . $article->getContent() . "');");
+			var_dump($req);
 			$last_ID = $db->lastInsertId();
 			$article->setId($last_ID);
 			$article->setTitle($article->getTitle());

@@ -5,9 +5,9 @@
 		
 		private $id;
 		private $title = ""; 
+		private $author = null;
 		private $datepost;
 		private $dateEdit;
-		private $author = "";
 		private $content = "";
 		
 		function __construct() {
