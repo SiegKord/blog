@@ -1,0 +1,12 @@
+
+<?php
+//disconnect.php
+
+function disconnect(){
+$_SESSION['userID'] = null;
+
+session_destroy();
+return 0;
+}
+
+?>

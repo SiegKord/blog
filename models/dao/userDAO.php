@@ -137,5 +137,17 @@ class UserDAO {
 		return $nbArticle;
 	}
 	
+	public function getConnect($email, $mdp) {
+		
+		$db = SPDO::getInstance();
+		$req = $db->query("SELECT id FROM user WHERE email = '$email' AND mdp = '$mdp'");
+		var_dump($req);
+		$result = $req->fetchColumn();
+		var_dump($result);
+		if($result>0)
+			return true;
+		else
+			return false;
+	}
 	
 }
